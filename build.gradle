@@ -1,0 +1,42 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+
+        /**
+         * 插件的仓库地址
+         * 测试这里直接是release文件夹
+         */
+        maven {
+            url uri('release')
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.0'
+
+        /**
+         * groupId 'com.plugin.demo' //决定jar文件生成的目录
+         * artifactId 'plugin-test'  //模块的名称
+         * version '1.0.0'  //指定版本号
+         *
+         * groupId:artifactId:version
+         */
+        classpath 'com.plugin.demo:plugin-test:1.0.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

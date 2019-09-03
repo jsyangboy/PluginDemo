@@ -1,0 +1,41 @@
+apply plugin:'groovy'
+apply plugin: 'maven'
+
+dependencies{
+    compile gradleApi()
+    compile localGroovy()
+}
+
+repositories {
+    mavenCentral()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer{
+
+            /**
+             * 提交到远程服务器：
+             * 真正的发布都会发布到远程服务器
+             */
+            // repository(url: "http://www.xxx.com/repos") {
+            //    authentication(userName: "admin", password: "admin")
+            // }
+
+
+            pom.project {
+                groupId 'com.plugin.demo' //决定jar文件生成的目录
+                artifactId 'plugin-test'  //模块的名称
+                version '1.0.0'  //指定版本号
+                description project.description ?:''
+                packaging 'jar'
+            }
+
+            /**
+             * 文件发布到下面目录
+             * 这里为了测试方便
+             */
+            repository(url: uri('../release'))
+        }
+    }
+}
